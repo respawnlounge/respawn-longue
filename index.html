@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Respawn Lounge | Balangoda Outpost</title>
     
     <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/fortawesome/Font-Awesome/6.x/svgs/brands/playstation.svg">
@@ -17,15 +17,30 @@
             background-color: #030305;
             color: #f3f4f6;
             -webkit-tap-highlight-color: transparent;
+            position: relative;
         }
         .heading-font { font-family: 'Orbitron', sans-serif; }
         .rockstar-font { font-family: 'Syncopate', sans-serif; }
         
+        /* 🌌 FIXED: TRANSPARENT CYBER GRID BACKGROUND WITH RADIAL GRADIENT */
+        .cyber-grid-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at 50% 30%, black 20%, rgba(0,0,0,0.3) 70%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 20%, rgba(0,0,0,0.3) 70%, transparent 100%);
+        }
+
         /* TRUE iOS TRANSPARENT GLASS EFFECT FOR HEADER */
         .ios-premium-blur {
-            background: rgba(255, 255, 255, 0.03) !important;
-            backdrop-filter: blur(30px) saturate(190%) !important;
-            -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
+            background: rgba(3, 3, 5, 0.4) !important;
+            backdrop-filter: blur(20px) saturate(190%) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
         }
 
@@ -47,49 +62,62 @@
         
         /* HARDWARE-ACCELERATED MOBILE GLASS THEME */
         .ios-water-glass {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 12px 40px 0 rgba(0, 0, 0, 0.6);
             transform: translate3d(0,0,0);
+            -webkit-transform: translate3d(0,0,0);
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease;
             will-change: transform, box-shadow;
         }
         
         .ios-water-matrix {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.05);
         }
 
-        /* FIXED: DYNAMIC ZOOM AND ELEVATION ON CURSOR HOVER (WITH !IMPORTANT TO OVERRIDE TRANSLATE3D) */
-        .hover-card-animate:hover {
-            transform: translate3d(0, -10px, 0) scale(1.04) !important;
-            z-index: 20;
+        /* DYNAMIC ZOOM AND ELEVATION ON HOVER (MOBILE HYBRID SUPPORT) */
+        @media (hover: hover) {
+            .hover-card-animate:hover {
+                transform: translate3d(0, -10px, 0) scale(1.04) !important;
+                -webkit-transform: translate3d(0, -10px, 0) scale(1.04) !important;
+                z-index: 20;
+            }
+            .hover-card-animate.neon-purple:hover {
+                box-shadow: 0 20px 40px rgba(168, 85, 247, 0.4), 0 0 25px rgba(168, 85, 247, 0.2);
+                border-color: rgba(168, 85, 247, 0.7);
+            }
+            .hover-card-animate.neon-cyan:hover {
+                box-shadow: 0 20px 40px rgba(6, 182, 212, 0.5), 0 0 25px rgba(6, 182, 212, 0.3);
+                border-color: rgba(6, 182, 212, 0.7);
+            }
         }
-        .hover-card-animate.neon-purple:hover {
-            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.4), 0 0 25px rgba(168, 85, 247, 0.2);
-            border-color: rgba(168, 85, 247, 0.7);
-        }
-        .hover-card-animate.neon-cyan:hover {
-            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.5), 0 0 25px rgba(6, 182, 212, 0.3);
-            border-color: rgba(6, 182, 212, 0.7);
+
+        /* MOBILE ACTIVE STATE TOUCH INTENSITY FOR ANDROID/IPHONE */
+        .hover-card-animate:active {
+            transform: scale(0.98) translate3d(0,0,0) !important;
+            -webkit-transform: scale(0.98) translate3d(0,0,0) !important;
+            transition: transform 0.15s ease;
         }
 
         /* ENTRANCE FADE ANIMATION */
         .fade-in-up {
             opacity: 0;
             transform: translateY(20px);
+            -webkit-transform: translateY(20px);
             transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
         body.loaded .fade-in-up {
             opacity: 1;
             transform: translateY(0);
+            -webkit-transform: translateY(0);
         }
-        /* Keep entrance and hover animation compatible */
         body.loaded .hover-card-animate {
             transform: translate3d(0,0,0);
+            -webkit-transform: translate3d(0,0,0);
         }
 
         /* LOADING SCREEN */
@@ -155,6 +183,7 @@
             background: #06b6d4;
             border-radius: 50%;
             filter: blur(120px);
+            -webkit-filter: blur(120px);
             z-index: 1;
             pointer-events: none;
             opacity: 0;
@@ -163,6 +192,20 @@
         @keyframes win11PulseAmbient {
             0% { opacity: 0.1; transform: scale3d(0.9, 0.9, 1); }
             100% { opacity: 0.28; transform: scale3d(1.1, 1.1, 1); }
+        }
+
+        /* MOBILE FIXES FOR APPARENCE AND INPUT SELECTS */
+        select, input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: rgba(0, 0, 0, 0.6) !important;
+        }
+        
+        /* Fix iOS input drop shadow & font-size zooming */
+        input[type="text"], input[type="date"], select {
+            font-size: 16px !important; /* Prevents auto zoom on iOS Safari */
+            box-shadow: none !important;
         }
 
         .interactive, select, input, button { touch-action: manipulation; }
@@ -196,24 +239,24 @@
             }
         }
 
-        .neon-cyan { box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3); border-color: rgba(6, 182, 212, 0.2); }
-        .neon-purple { box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.2); }
+        .neon-cyan { box-shadow: 0 4px 20px rgba(6, 182, 212, 0.2); border-color: rgba(6, 182, 212, 0.15); }
+        .neon-purple { box-shadow: 0 4px 20px rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.15); }
         .neon-animated-border { animation: edgePulse 3s linear infinite alternate; }
         @keyframes edgePulse {
-            0% { border-color: rgba(6, 182, 212, 0.2); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35), 0 0 10px rgba(6, 182, 212, 0.05); }
-            100% { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45), 0 0 15px rgba(168, 85, 247, 0.15); }
+            0% { border-color: rgba(6, 182, 212, 0.15); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35); }
+            100% { border-color: rgba(168, 85, 247, 0.35); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45); }
         }
         
-        /* Utility styles mapping to modern presets */
         .bg-black-50 { background-color: rgba(0,0,0,0.5); }
-        .bg-black-80 { background-color: rgba(0,0,0,0.8); }
         .bg-white-04 { background-color: rgba(255,255,255,0.04); }
         .border-white-10 { border-color: rgba(255,255,255,0.1); }
         .border-white-08 { border-color: rgba(255,255,255,0.08); }
-        .border-cyan-10 { border-color: rgba(6, 182, 212, 0.1); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between overflow-x-hidden relative select-none">
+
+    <!-- 🌌 GRID OVERLAY BACKGROUND LAYER -->
+    <div class="cyber-grid-overlay"></div>
 
     <div id="loader">
         <div class="loader-logo">R</div>
@@ -450,7 +493,7 @@
             dateInput.min = structuredToday;
         });
 
-        // --- HYBRID PLATFORM MOUSE TRACKING ENGINE (Mobile Safe) ---
+        // --- HYBRID PLATFORM MOUSE TRACKING ENGINE (Desktop Only) ---
         const cursorDot = document.getElementById('custom-cursor');
         const cursorGlow = document.getElementById('custom-cursor-glow');
 
@@ -611,7 +654,8 @@
                                 `⏰ *Time:* From ${startTime} To ${endTime}\n\n` +
                                 `_Please lock in this session for me!_`;
 
-            const nativeWhatsAppUrl = `https://wa.me/${myPhoneNumber}?text=${encodeURIComponent(messageText)}`;
+            // Native WhatsApp URL format for best cross-platform redirect (iOS & Android)
+            const nativeWhatsAppUrl = `https://api.whatsapp.com/send?phone=${myPhoneNumber}&text=${encodeURIComponent(messageText)}`;
             window.location.href = nativeWhatsAppUrl;
         });
     </script>
