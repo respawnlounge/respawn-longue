@@ -14,15 +14,16 @@
     <style>
         body {
             font-family: 'Rajdhani', sans-serif;
-            background-color: #030305;
+            background-color: #020204;
             color: #f3f4f6;
             -webkit-tap-highlight-color: transparent;
             position: relative;
+            overflow-x: hidden;
         }
         .heading-font { font-family: 'Orbitron', sans-serif; }
         .rockstar-font { font-family: 'Syncopate', sans-serif; }
         
-        /* 🌌 FIXED: TRANSPARENT CYBER GRID BACKGROUND WITH RADIAL GRADIENT */
+        /* 🌌 TRANSPARENT CYBER GRID BACKGROUND WITH RADIAL GRADIENT */
         .cyber-grid-overlay {
             position: fixed;
             inset: 0;
@@ -30,15 +31,15 @@
             pointer-events: none;
             background-size: 40px 40px;
             background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            mask-image: radial-gradient(circle at 50% 30%, black 20%, rgba(0,0,0,0.3) 70%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 20%, rgba(0,0,0,0.3) 70%, transparent 100%);
+                linear-gradient(to right, rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+            mask-image: radial-gradient(circle at 50% 30%, black 20%, rgba(0,0,0,0.4) 70%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 20%, rgba(0,0,0,0.4) 70%, transparent 100%);
         }
 
         /* TRUE iOS TRANSPARENT GLASS EFFECT FOR HEADER */
         .ios-premium-blur {
-            background: rgba(3, 3, 5, 0.4) !important;
+            background: rgba(2, 2, 4, 0.4) !important;
             backdrop-filter: blur(20px) saturate(190%) !important;
             -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
@@ -52,212 +53,217 @@
             border: 1px solid rgba(255, 255, 255, 0.15) !important;
             color: #ffffff !important;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
         .ios-btn-blur:hover {
             background: rgba(255, 255, 255, 0.15) !important;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
+            border: 1px solid rgba(6, 182, 212, 0.5) !important;
+            transform: translateY(-2px);
         }
         
         /* HARDWARE-ACCELERATED MOBILE GLASS THEME */
         .ios-water-glass {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
             backdrop-filter: blur(25px) saturate(180%);
             -webkit-backdrop-filter: blur(25px) saturate(180%);
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 12px 40px 0 rgba(0, 0, 0, 0.6);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 12px 40px 0 rgba(0, 0, 0, 0.7);
             transform: translate3d(0,0,0);
             -webkit-transform: translate3d(0,0,0);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease, border-color 0.5s ease;
             will-change: transform, box-shadow;
         }
         
         .ios-water-matrix {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.05);
         }
 
-        /* DYNAMIC ZOOM AND ELEVATION ON HOVER (MOBILE HYBRID SUPPORT) */
+        /* 🔥 SMOOTH HOVER 3D ELEVATION MATRIX */
         @media (hover: hover) {
             .hover-card-animate:hover {
-                transform: translate3d(0, -10px, 0) scale(1.04) !important;
-                -webkit-transform: translate3d(0, -10px, 0) scale(1.04) !important;
+                transform: translate3d(0, -12px, 0) scale(1.04) !important;
+                -webkit-transform: translate3d(0, -12px, 0) scale(1.04) !important;
                 z-index: 20;
             }
             .hover-card-animate.neon-purple:hover {
-                box-shadow: 0 20px 40px rgba(168, 85, 247, 0.4), 0 0 25px rgba(168, 85, 247, 0.2);
-                border-color: rgba(168, 85, 247, 0.7);
+                box-shadow: 0 20px 40px rgba(168, 85, 247, 0.35), 0 0 30px rgba(168, 85, 247, 0.2);
+                border-color: rgba(168, 85, 247, 0.8);
             }
             .hover-card-animate.neon-cyan:hover {
-                box-shadow: 0 20px 40px rgba(6, 182, 212, 0.5), 0 0 25px rgba(6, 182, 212, 0.3);
-                border-color: rgba(6, 182, 212, 0.7);
+                box-shadow: 0 20px 40px rgba(6, 182, 212, 0.45), 0 0 30px rgba(6, 182, 212, 0.25);
+                border-color: rgba(6, 182, 212, 0.8);
             }
         }
 
-        /* MOBILE ACTIVE STATE TOUCH INTENSITY FOR ANDROID/IPHONE */
+        /* MOBILE TOUCH FEEDBACK */
         .hover-card-animate:active {
-            transform: scale(0.98) translate3d(0,0,0) !important;
-            -webkit-transform: scale(0.98) translate3d(0,0,0) !important;
-            transition: transform 0.15s ease;
+            transform: scale(0.97) translate3d(0,0,0) !important;
+            -webkit-transform: scale(0.97) translate3d(0,0,0) !important;
+            transition: transform 0.1s ease;
         }
 
-        /* ENTRANCE FADE ANIMATION */
-        .fade-in-up {
+        /* 🚀 ADVANCED SCROLL-DRIVEN ENTRANCE ANIMATION */
+        .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(20px);
-            -webkit-transform: translateY(20px);
-            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: translateY(40px) scale(0.95);
+            -webkit-transform: translateY(40px) scale(0.95);
+            transition: opacity 0.8s cubic-bezier(0.2, 1, 0.2, 1), transform 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+            will-change: opacity, transform;
         }
-        body.loaded .fade-in-up {
+        .reveal-on-scroll.active {
             opacity: 1;
-            transform: translateY(0);
-            -webkit-transform: translateY(0);
-        }
-        body.loaded .hover-card-animate {
-            transform: translate3d(0,0,0);
-            -webkit-transform: translate3d(0,0,0);
+            transform: translateY(0) scale(1);
+            -webkit-transform: translateY(0) scale(1);
         }
 
-        /* LOADING SCREEN */
+        /* ⚡ CYBER SCANNING LOADER WITH LASER */
         #loader {
             position: fixed;
             inset: 0;
-            background: #000000;
+            background: #020204;
             z-index: 99999;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.4s ease-in-out, visibility 0.4s;
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
+        }
+        #loader::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+            box-shadow: 0 0 15px #06b6d4, 0 0 30px #06b6d4;
+            animation: scanLaser 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        @keyframes scanLaser {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
         }
         .loader-logo {
-            font-size: 4rem;
+            font-size: 5rem;
             font-family: 'Syncopate', sans-serif;
             font-weight: 900;
             color: #06b6d4;
-            text-shadow: 0 0 15px #06b6d4;
-            animation: glitch 1.5s infinite alternate;
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+            animation: glitchText 2s infinite alternate;
         }
-        @keyframes glitch {
-            0% { transform: skew(0deg); }
-            20% { transform: skew(-2deg); color: #a855f7; }
-            40% { transform: skew(2deg); color: #06b6d4; }
-            100% { transform: skew(0deg); }
+        @keyframes glitchText {
+            0%, 100% { transform: none; text-shadow: 0 0 20px rgba(6, 182, 212, 0.6); }
+            30% { transform: skewX(-3deg); color: #a855f7; text-shadow: -2px 0 #06b6d4, 2px 0 #a855f7; }
+            35% { transform: skewX(3deg); color: #06b6d4; }
         }
         .loader-bar {
-            width: 160px;
-            height: 4px;
-            background: #111;
-            margin-top: 20px;
-            border-radius: 2px;
+            width: 200px;
+            height: 3px;
+            background: rgba(255,255,255,0.05);
+            margin-top: 25px;
+            border-radius: 10px;
             overflow: hidden;
             position: relative;
         }
         .loader-progress {
-            width: 0%;
-            height: 100%;
+            width: 0%; height: 100%;
             background: linear-gradient(90deg, #a855f7, #06b6d4);
             position: absolute;
-            animation: load 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: loadProgress 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
-        @keyframes load { 100% { width: 100%; } }
+        @keyframes loadProgress { 100% { width: 100%; } }
 
-        /* GLOW & GRADIENT ENGINES */
+        /* ✨ TEXT SHINE & GLOW ENGINES */
         .animated-corner-logo, .animated-booking-title {
             background: linear-gradient(90deg, #06b6d4, #a855f7, #06b6d4);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
+            animation: gradientShine 3s linear infinite;
         }
-        @keyframes shine { to { background-position: 200% center; } }
+        @keyframes gradientShine { to { background-position: 200% center; } }
 
+        /* WIN11 AMBIENT GLOW EFFECT */
         #win11-ambient-glow {
             position: fixed;
-            top: -10%;
-            left: 10%;
-            width: 80vw;
-            height: 50vh;
-            background: #06b6d4;
-            border-radius: 50%;
-            filter: blur(120px);
-            -webkit-filter: blur(120px);
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0;
+            top: -15%; left: 10%; width: 80vw; height: 50vh;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+            z-index: 1; pointer-events: none; opacity: 0;
         }
-        .start-win11-glow { animation: win11PulseAmbient 6s ease-in-out infinite alternate forwards; }
-        @keyframes win11PulseAmbient {
-            0% { opacity: 0.1; transform: scale3d(0.9, 0.9, 1); }
-            100% { opacity: 0.28; transform: scale3d(1.1, 1.1, 1); }
+        .start-win11-glow { animation: pulseAmbient 8s ease-in-out infinite alternate forwards; }
+        @keyframes pulseAmbient {
+            0% { opacity: 0.4; transform: scale(0.9); }
+            100% { opacity: 0.8; transform: scale(1.1); }
         }
 
-        /* MOBILE FIXES FOR APPARENCE AND INPUT SELECTS */
+        /* 👑 DYNAMIC CHAMELEON ROTATING RGB BORDER FOR BOOKING CARD */
+        .neon-animated-border {
+            position: relative;
+            border: 1px solid transparent;
+            background-clip: padding-box;
+        }
+        .neon-animated-border::before {
+            content: '';
+            position: absolute;
+            top: -2px; bottom: -2px; left: -2px; right: -2px;
+            z-index: -1;
+            border-radius: inherit;
+            background: conic-gradient(from 0deg, #06b6d4, #a855f7, #f43f5e, #06b6d4);
+            animation: rotateBorderGlow 4s linear infinite;
+        }
+        @keyframes rotateBorderGlow {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Prevent auto-zooms on iOS and adjust inputs */
         select, input {
             -webkit-appearance: none;
-            -moz-appearance: none;
             appearance: none;
-            background-color: rgba(0, 0, 0, 0.6) !important;
+            background-color: rgba(0, 0, 0, 0.7) !important;
+            transition: all 0.3s ease;
         }
-        
-        /* Fix iOS input drop shadow & font-size zooming */
-        input[type="text"], input[type="date"], select {
-            font-size: 16px !important; /* Prevents auto zoom on iOS Safari */
-            box-shadow: none !important;
+        input:focus, select:focus {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3) !important;
+            border-color: #06b6d4 !important;
         }
-
+        input[type="text"], input[type="date"], select { font-size: 16px !important; }
         .interactive, select, input, button { touch-action: manipulation; }
 
+        /* 🖱️ CUSTOM CURSOR STYLING (PC ONLY) */
         @media (min-width: 1024px) {
             body { cursor: none !important; }
             a, button, select, input { cursor: none !important; }
             #custom-cursor {
-                width: 8px; height: 8px;
-                background-color: #06b6d4;
-                border-radius: 50%;
-                position: fixed;
-                transform: translate(-50%, -50%);
-                pointer-events: none;
-                z-index: 9999;
-                box-shadow: 0 0 10px #06b6d4;
+                width: 8px; height: 8px; background-color: #06b6d4; border-radius: 50%;
+                position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999;
+                box-shadow: 0 0 15px #06b6d4, 0 0 30px #06b6d4;
             }
             #custom-cursor-glow {
-                width: 36px; height: 36px;
-                border: 2px solid rgba(168, 85, 247, 0.5);
-                border-radius: 50%;
-                position: fixed;
-                transform: translate(-50%, -50%);
-                pointer-events: none;
-                z-index: 9998;
+                width: 40px; height: 40px; border: 2px solid rgba(168, 85, 247, 0.4); border-radius: 50%;
+                position: fixed; transform: translate(-50%, -50%); pointer-events: none; z-index: 9998;
+                transition: width 0.2s, height 0.2s, border-color 0.2s;
             }
-            body.clicking #custom-cursor { background-color: #a855f7; }
+            body.clicking #custom-cursor { background-color: #f43f5e; box-shadow: 0 0 15px #f43f5e; }
             body.hovering #custom-cursor-glow {
-                border-color: #06b6d4;
-                transform: translate(-50%, -50%) scale(1.25);
+                border-color: #06b6d4; width: 55px; height: 55px; background: rgba(6, 182, 212, 0.05);
             }
         }
 
-        .neon-cyan { box-shadow: 0 4px 20px rgba(6, 182, 212, 0.2); border-color: rgba(6, 182, 212, 0.15); }
-        .neon-purple { box-shadow: 0 4px 20px rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.15); }
-        .neon-animated-border { animation: edgePulse 3s linear infinite alternate; }
-        @keyframes edgePulse {
-            0% { border-color: rgba(6, 182, 212, 0.15); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35); }
-            100% { border-color: rgba(168, 85, 247, 0.35); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45); }
-        }
-        
+        .neon-cyan { border-color: rgba(6, 182, 212, 0.2); }
+        .neon-purple { border-color: rgba(168, 85, 247, 0.2); }
         .bg-black-50 { background-color: rgba(0,0,0,0.5); }
         .bg-white-04 { background-color: rgba(255,255,255,0.04); }
         .border-white-10 { border-color: rgba(255,255,255,0.1); }
         .border-white-08 { border-color: rgba(255,255,255,0.08); }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between overflow-x-hidden relative select-none">
+<body class="min-h-screen flex flex-col justify-between relative select-none">
 
     <!-- 🌌 GRID OVERLAY BACKGROUND LAYER -->
     <div class="cyber-grid-overlay"></div>
 
+    <!-- ⚡ CYBER LASER LOADER -->
     <div id="loader">
         <div class="loader-logo">R</div>
         <div class="text-[10px] tracking-[0.5em] text-gray-400 uppercase mt-4 rockstar-font">RESPAWN LOUNGE</div>
@@ -274,32 +280,34 @@
             <h1 class="animated-corner-logo heading-font text-xl md:text-2xl font-black tracking-wider">
                 RESPAWN LOUNGE
             </h1>
-            <a href="#booking" class="interactive ios-btn-blur font-extrabold px-5 py-2 rounded-lg heading-font tracking-wide text-xs md:text-sm transform active:scale-95 transition dynamic-transition">
+            <a href="#booking" class="interactive ios-btn-blur font-extrabold px-5 py-2 rounded-lg heading-font tracking-wide text-xs md:text-sm transform active:scale-95 transition">
                 BOOK NOW
             </a>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-6 md:py-10 flex-grow w-full relative z-10 space-y-12">
+    <main class="max-w-6xl mx-auto px-4 py-6 md:py-10 flex-grow w-full relative z-10 space-y-16">
         
-        <div class="text-center px-2 fade-in-up">
+        <!-- MAIN TITLE SECTION -->
+        <div class="text-center px-2 reveal-on-scroll">
             <p class="text-cyan-400 font-bold uppercase mb-1 tracking-[0.2em] text-xs">Balangoda's No.1 Gaming Lounge</p>
             <h2 class="heading-font text-3xl md:text-6xl font-black text-white mb-3 tracking-tight">READY UP: BOOK YOUR SESSION</h2>
             <div class="h-1 w-20 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 mx-auto rounded-full shadow"></div>
         </div>
 
+        <!-- GAMING CARDS GRID -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <!-- PLAYSTATION 5 BOOTHS CARD -->
-            <div class="ios-water-glass hover-card-animate neon-purple rounded-2xl p-6 flex flex-col justify-between group fade-in-up" style="transition-delay: 100ms;">
+            <div class="ios-water-glass hover-card-animate neon-purple rounded-2xl p-6 flex flex-col justify-between group reveal-on-scroll">
                 <div>
                     <div class="flex justify-between items-center mb-4">
                         <span class="bg-purple-500 bg-opacity-20 border border-purple-500 border-opacity-30 text-purple-300 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">3 Systems Set Up</span>
-                        <i class="fa-brands fa-playstation text-3xl text-purple-400 transition duration-300 transform group-hover:scale-120 group-hover:rotate-12"></i>
+                        <i class="fa-brands fa-playstation text-3xl text-purple-400 transition duration-500 transform group-hover:scale-125 group-hover:rotate-12"></i>
                     </div>
                     <h3 class="heading-font text-xl md:text-2xl font-bold text-white mb-2">PlayStation 5 Booths</h3>
                     <p class="text-gray-400 text-sm mb-5 leading-relaxed">Immersive 4K high-refresh-rate console gaming setups built for local multiplayer co-op sessions or heavy solo campaigns.</p>
                     
-                    <div class="ios-water-matrix border border-white-10 rounded-xl p-4 mb-5">
+                    <div class="ios-water-matrix border border-white-10 rounded-xl p-4 mb-5 transition duration-300 group-hover:border-purple-500 group-hover:border-opacity-30">
                         <h4 class="text-xs font-black tracking-widest text-purple-300 mb-2.5 uppercase heading-font flex items-center gap-1.5"><i class="fa-solid fa-tags"></i> PS5 Rate Matrix</h4>
                         <div class="space-y-3.5 text-xs">
                             <div>
@@ -333,27 +341,27 @@
                     <div class="border-t border-white border-opacity-10 pt-4">
                         <h4 class="text-xs uppercase font-bold tracking-widest text-purple-300 mb-2"><i class="fa-solid fa-compact-disc mr-1"></i> Available Library:</h4>
                         <div class="flex flex-wrap gap-1.5">
-                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">EA Sports FC 26</span>
-                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">Mortal Kombat 1</span>
-                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">MK 11 Ultimate</span>
-                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">Fortnite</span>
-                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">Uncharted Series</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded transition group-hover:border-purple-500 group-hover:border-opacity-20">EA Sports FC 26</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded transition group-hover:border-purple-500 group-hover:border-opacity-20">Mortal Kombat 1</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded transition group-hover:border-purple-500 group-hover:border-opacity-20">MK 11 Ultimate</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded transition group-hover:border-purple-500 group-hover:border-opacity-20">Fortnite</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded transition group-hover:border-purple-500 group-hover:border-opacity-20">Uncharted Series</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- ELITE PC + FORCE-FEEDBACK RIG CARD -->
-            <div class="ios-water-glass hover-card-animate neon-cyan rounded-2xl p-6 flex flex-col justify-between group fade-in-up" style="transition-delay: 200ms;">
+            <div class="ios-water-glass hover-card-animate neon-cyan rounded-2xl p-6 flex flex-col justify-between group reveal-on-scroll">
                 <div>
                     <div class="flex justify-between items-center mb-4">
                         <span class="bg-cyan-500 bg-opacity-20 border border-cyan-500 border-opacity-30 text-cyan-300 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Sim-Rig Cockpit</span>
-                        <i class="fa-solid fa-gamepad text-3xl text-cyan-400 transition duration-300 transform group-hover:scale-120 group-hover:rotate-12"></i>
+                        <i class="fa-solid fa-gamepad text-3xl text-cyan-400 transition duration-300 transform group-hover:scale-125 group-hover:rotate-12"></i>
                     </div>
                     <h3 class="heading-font text-xl md:text-2xl font-bold text-white mb-2">Elite PC + Force-Feedback Rig</h3>
                     <p class="text-gray-400 text-sm mb-5 leading-relaxed">High-performance gaming machine coupled with a dynamic force-feedback steering wheel and pedal system for hardcore racing simulators.</p>
                     
-                    <div class="ios-water-matrix border border-white-10 rounded-xl p-4 mb-5">
+                    <div class="ios-water-matrix border border-white-10 rounded-xl p-4 mb-5 transition duration-300 group-hover:border-cyan-500 group-hover:border-opacity-30">
                         <h4 class="text-xs font-black tracking-widest text-cyan-300 mb-2.5 uppercase heading-font flex items-center gap-1.5"><i class="fa-solid fa-gauge-high"></i> Sim-Rig Pass Rates</h4>
                         <div class="space-y-2 text-xs text-gray-300">
                             <div class="flex justify-between border-b border-white border-opacity-5 pb-2">
@@ -374,20 +382,20 @@
                     <div class="border-t border-white border-opacity-10 pt-4">
                         <h4 class="text-xs uppercase font-bold tracking-widest text-cyan-300 mb-2"><i class="fa-solid fa-computer mr-1"></i> Available Games:</h4>
                         <div class="flex flex-wrap gap-1.5">
-                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">God of War</span>
-                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">NFS Unbound</span>
-                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">Forza Horizon 5</span>
-                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">F1 2025</span>
-                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">GTA V</span>
-                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">The Forest</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded transition group-hover:border-cyan-500 group-hover:border-opacity-20">God of War</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded transition group-hover:border-cyan-500 group-hover:border-opacity-20">NFS Unbound</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded transition group-hover:border-cyan-500 group-hover:border-opacity-20">Forza Horizon 5</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded transition group-hover:border-cyan-500 group-hover:border-opacity-20">F1 2025</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded transition group-hover:border-cyan-500 group-hover:border-opacity-20">GTA V</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded transition group-hover:border-cyan-500 group-hover:border-opacity-20">The Forest</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <section id="booking" class="ios-water-glass border rounded-2xl p-6 md:p-10 max-w-xl mx-auto shadow-2xl relative overflow-hidden neon-animated-border fade-in-up" style="transition-delay: 300ms;">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 shadow"></div>
+        <!-- BOOKING CARD WITH CHAMELEON ROTATING RGB BORDER -->
+        <section id="booking" class="ios-water-glass neon-animated-border rounded-2xl p-6 md:p-10 max-w-xl mx-auto shadow-2xl relative overflow-hidden reveal-on-scroll">
             
             <h3 class="animated-booking-title heading-font text-xl md:text-2xl font-black text-center mb-6 tracking-wide uppercase">
                 SECURE YOUR SLOT
@@ -396,13 +404,13 @@
             <form id="whatsappForm" class="space-y-5">
                 <div>
                     <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Your Gamer Tag / Name</label>
-                    <input type="text" id="name" required class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm" placeholder="e.g., Deshan">
+                    <input type="text" id="name" required class="w-full border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none text-sm" placeholder="e.g., Deshan">
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Select Rig / Console</label>
                     <div class="relative">
-                        <select id="station" required class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm appearance-none">
+                        <select id="station" required class="w-full border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none text-sm">
                             <option value="" disabled selected class="bg-black">Choose your weapon...</option>
                             <option value="PS5 1" class="bg-black">PS5 1</option>
                             <option value="PS5 2" class="bg-black">PS5 2</option>
@@ -416,7 +424,7 @@
                 <div>
                     <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Select Game</label>
                     <div class="relative">
-                        <select id="game" required disabled class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm appearance-none opacity-40">
+                        <select id="game" required disabled class="w-full border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none text-sm opacity-40">
                             <option value="" disabled selected class="bg-black">First choose your setup above...</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-xs"><i class="fa-solid fa-chevron-down"></i></div>
@@ -425,14 +433,14 @@
 
                 <div>
                     <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Date</label>
-                    <input type="date" id="date" required class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm">
+                    <input type="date" id="date" required class="w-full border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none text-sm">
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">From (Start)</label>
                         <div class="relative">
-                            <select id="startTime" required disabled class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm appearance-none opacity-40">
+                            <select id="startTime" required disabled class="w-full border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none text-sm opacity-40">
                                 <option value="" disabled selected class="bg-black">Pick start time...</option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-xs"><i class="fa-solid fa-chevron-down"></i></div>
@@ -441,7 +449,7 @@
                     <div>
                         <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">To (End)</label>
                         <div class="relative">
-                            <select id="endTime" required disabled class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm appearance-none opacity-40">
+                            <select id="endTime" required disabled class="w-full border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none text-sm opacity-40">
                                 <option value="" disabled selected class="bg-black">Choose start time first...</option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-xs"><i class="fa-solid fa-chevron-down"></i></div>
@@ -461,7 +469,7 @@
     </footer>
 
     <script>
-        // --- INSTANT INTRO LOADER & ENTRANCE ENGINE ---
+        // --- INTRO LOADER ENTRANCE ENGINE ---
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const loader = document.getElementById('loader');
@@ -472,10 +480,35 @@
                 setTimeout(() => {
                     loader.style.visibility = 'hidden';
                     win11Light.classList.add('start-win11-glow');
-                    document.body.classList.add('loaded');
-                }, 400);
-            }, 500);
+                    triggerScrollReveal(); // Initialize reveal engine
+                }, 500);
+            }, 1000);
         });
+
+        // --- 🧠 INTERSECTION OBSERVER ENGINE FOR 3D SCROLL REVEALS ---
+        function triggerScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+            
+            const observerOptions = {
+                root: null,
+                threshold: 0.1, // Trigger when 10% of card is visible
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Cascade delay on grid items
+                        setTimeout(() => {
+                            entry.target.classList.add('active');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(el => observer.observe(el));
+        }
 
         // --- AUTOMATED CALENDAR LOCK ---
         window.addEventListener('DOMContentLoaded', () => {
@@ -493,7 +526,7 @@
             dateInput.min = structuredToday;
         });
 
-        // --- HYBRID PLATFORM MOUSE TRACKING ENGINE (Desktop Only) ---
+        // --- INTERACTIVE MOUSE TRACKING ENGINE (PC Only) ---
         const cursorDot = document.getElementById('custom-cursor');
         const cursorGlow = document.getElementById('custom-cursor-glow');
 
@@ -508,7 +541,7 @@
                 cursorGlow.animate({
                     left: `${posX}px`,
                     top: `${posY}px`
-                }, { duration: 100, fill: "forwards" });
+                }, { duration: 120, fill: "forwards" });
             });
 
             document.addEventListener('mousedown', () => document.body.classList.add('clicking'));
@@ -523,7 +556,7 @@
             updateCursorListeners();
         }
 
-        // --- DYNAMIC SLOT INTERVAL CALCULATION MATRIX ENGINE ---
+        // --- DYNAMIC SLOT CALCULATION MATRIX ENGINE ---
         const startSelect = document.getElementById('startTime');
         const endSelect = document.getElementById('endTime');
         const stationSelect = document.getElementById('station');
@@ -557,8 +590,8 @@
             startSelect.disabled = false;
             startSelect.classList.remove('opacity-40');
             
-            const startLimit = 9 * 60; // 9:00 AM
-            const endLimit = 19.5 * 60; // 7:30 PM
+            const startLimit = 9 * 60; 
+            const endLimit = 19.5 * 60; 
 
             for (let mins = startLimit; mins <= endLimit - interval; mins += interval) {
                 const timeStr = minutesToTime(mins);
@@ -654,7 +687,6 @@
                                 `⏰ *Time:* From ${startTime} To ${endTime}\n\n` +
                                 `_Please lock in this session for me!_`;
 
-            // Native WhatsApp URL format for best cross-platform redirect (iOS & Android)
             const nativeWhatsAppUrl = `https://api.whatsapp.com/send?phone=${myPhoneNumber}&text=${encodeURIComponent(messageText)}`;
             window.location.href = nativeWhatsAppUrl;
         });
