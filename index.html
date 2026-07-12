@@ -81,6 +81,27 @@
             box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.05);
         }
 
+        /* FLOATING CYBER PARTICLES BACKGROUND ANIMATION FOR THE COMMUNITY CARD */
+        .particle-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        .particle-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(34, 197, 94, 0.15) 1px, transparent 0);
+            background-size: 24px 24px;
+            animation: floatParticles 20s linear infinite;
+            z-index: 0;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        @keyframes floatParticles {
+            0% { background-position: 0 0; }
+            100% { background-position: 48px 48px; }
+        }
+
         /* 🔥 SMOOTH HOVER 3D ELEVATION MATRIX */
         @media (hover: hover) {
             .hover-card-animate:hover {
@@ -95,6 +116,10 @@
             .hover-card-animate.neon-cyan:hover {
                 box-shadow: 0 20px 40px rgba(6, 182, 212, 0.45), 0 0 30px rgba(6, 182, 212, 0.25);
                 border-color: rgba(6, 182, 212, 0.8);
+            }
+            .hover-card-animate.neon-green:hover {
+                box-shadow: 0 20px 40px rgba(34, 197, 94, 0.35), 0 0 30px rgba(34, 197, 94, 0.2);
+                border-color: rgba(34, 197, 94, 0.8);
             }
         }
 
@@ -175,12 +200,16 @@
         @keyframes loadProgress { 100% { width: 100%; } }
 
         /* ✨ TEXT SHINE & GLOW ENGINES */
-        .animated-corner-logo, .animated-booking-title {
+        .animated-corner-logo, .animated-booking-title, .animated-community-title {
             background: linear-gradient(90deg, #06b6d4, #a855f7, #06b6d4);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: gradientShine 3s linear infinite;
+        }
+        .animated-community-title {
+            background: linear-gradient(90deg, #22c55e, #a855f7, #22c55e);
+            background-size: 200% auto;
         }
         @keyframes gradientShine { to { background-position: 200% center; } }
 
@@ -252,6 +281,7 @@
 
         .neon-cyan { border-color: rgba(6, 182, 212, 0.2); }
         .neon-purple { border-color: rgba(168, 85, 247, 0.2); }
+        .neon-green { border-color: rgba(34, 197, 94, 0.2); }
         .bg-black-50 { background-color: rgba(0,0,0,0.5); }
         .bg-white-04 { background-color: rgba(255,255,255,0.04); }
         .border-white-10 { border-color: rgba(255,255,255,0.1); }
@@ -394,11 +424,27 @@
             </div>
         </div>
 
+        <!-- NEW: WHATSAPP COMMUNITY CHAT GROUP CARD WITH WATER-GLASS EFFECT & PARTICLE BG -->
+        <div class="ios-water-glass hover-card-animate neon-green particle-bg rounded-2xl p-6 max-w-xl mx-auto shadow-2xl reveal-on-scroll relative z-20">
+            <div class="relative z-10 flex flex-col items-center text-center">
+                <div class="w-14 h-14 bg-green-500 bg-opacity-20 border border-green-500 border-opacity-40 rounded-full flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(34,197,94,0.3)] animate-pulse">
+                    <i class="fa-brands fa-whatsapp text-3xl text-green-400"></i>
+                </div>
+                <h3 class="animated-community-title heading-font text-lg md:text-xl font-black mb-2 uppercase tracking-wide">JOIN THE RESPAWN COMMUNITY</h3>
+                <p class="text-gray-400 text-sm mb-5 max-w-sm leading-relaxed">
+                    සෙට් වෙන්න ලංකාවේ සුපිරිම Gaming Clan එකට! Chat කරලා අලුත් Squad එකක් සෙට් කරගන්න, ලවුන්ජ් එකේ අලුත්ම updates සහ Tournaments ගැන හැමදේම දැනගන්න.
+                </p>
+                <a href="https://chat.whatsapp.com/I39IwaBwiuD32zPJyl45YX?s=cl&p=i&ilr=1" target="_blank" class="interactive w-full max-w-xs bg-gradient-to-r from-green-500 via-emerald-600 to-teal-500 text-white font-black py-3.5 rounded-xl heading-font tracking-widest text-xs shadow-lg flex justify-center items-center gap-2 transform active:scale-95 transition duration-150">
+                    <i class="fa-solid fa-comments text-base"></i> ENTER GAMERS CHAT
+                </a>
+            </div>
+        </div>
+
         <!-- BOOKING CARD WITH CHAMELEON ROTATING RGB BORDER -->
         <section id="booking" class="ios-water-glass neon-animated-border rounded-2xl p-6 md:p-10 max-w-xl mx-auto shadow-2xl relative overflow-hidden reveal-on-scroll">
             
             <h3 class="animated-booking-title heading-font text-xl md:text-2xl font-black text-center mb-6 tracking-wide uppercase">
-                SECURE YOUR SLOT
+                SECURE YOUR SLOT (RESERVATION)
             </h3>
             
             <form id="whatsappForm" class="space-y-5">
@@ -458,7 +504,7 @@
                 </div>
 
                 <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-cyan-500 text-white font-black py-4 rounded-xl heading-font tracking-widest text-sm shadow-lg flex justify-center items-center gap-2.5 transform active:scale-95 transition duration-150">
-                    <i class="fa-brands fa-whatsapp text-xl"></i> BOOK YOUR SESSION
+                    <i class="fa-brands fa-whatsapp text-xl"></i> REQUEST RESERVATION
                 </button>
             </form>
         </section>
@@ -679,7 +725,7 @@
 
             const myPhoneNumber = "94776969181"; 
 
-            const messageText = `*NEW BOOKING REQUEST - RESPAWN LOUNGE*\n\n` +
+            const messageText = `*NEW RESERVATION REQUEST - RESPAWN LOUNGE*\n\n` +
                                 `🕹️ *Gamer:* ${name}\n` +
                                 `🖥️ *Platform:* ${stationName}\n` +
                                 `🎮 *Game Chosen:* ${game}\n` +
