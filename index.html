@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Respawn Lounge | Balangoda Outpost</title>
-<link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/fortawesome/Font-Awesome/6.x/svgs/brands/playstation.svg">    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/fortawesome/Font-Awesome/6.x/svgs/brands/playstation.svg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     
@@ -12,14 +15,12 @@
         body {
             font-family: 'Rajdhani', sans-serif;
             background-color: #030305;
+            color: #f3f4f6;
             -webkit-tap-highlight-color: transparent;
         }
-        .heading-font {
-            font-family: 'Orbitron', sans-serif;
-        }
-        .rockstar-font {
-            font-family: 'Syncopate', sans-serif;
-        }
+        .heading-font { font-family: 'Orbitron', sans-serif; }
+        .rockstar-font { font-family: 'Syncopate', sans-serif; }
+        
         /* TRUE iOS TRANSPARENT GLASS EFFECT FOR HEADER */
         .ios-premium-blur {
             background: rgba(255, 255, 255, 0.03) !important;
@@ -27,7 +28,8 @@
             -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
         }
-         /* PREMIUM iOS TRANSPARENT GLASS BUTTON EFFECT */
+
+        /* PREMIUM iOS TRANSPARENT GLASS BUTTON EFFECT */
         .ios-btn-blur {
             background: rgba(255, 255, 255, 0.07) !important;
             backdrop-filter: blur(15px) !important;
@@ -43,7 +45,7 @@
             border: 1px solid rgba(255, 255, 255, 0.3) !important;
         }
         
-        //* HARDWARE-ACCELERATED MOBILE GLASS THEME */
+        /* HARDWARE-ACCELERATED MOBILE GLASS THEME */
         .ios-water-glass {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
             backdrop-filter: blur(20px) saturate(180%);
@@ -53,7 +55,6 @@
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease;
             will-change: transform, box-shadow;
         }
-        }
         
         .ios-water-matrix {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
@@ -62,7 +63,36 @@
             box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.05);
         }
 
-        /* --- LOADING SCREEN --- */
+        /* FIXED: DYNAMIC ZOOM AND ELEVATION ON CURSOR HOVER (WITH !IMPORTANT TO OVERRIDE TRANSLATE3D) */
+        .hover-card-animate:hover {
+            transform: translate3d(0, -10px, 0) scale(1.04) !important;
+            z-index: 20;
+        }
+        .hover-card-animate.neon-purple:hover {
+            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.4), 0 0 25px rgba(168, 85, 247, 0.2);
+            border-color: rgba(168, 85, 247, 0.7);
+        }
+        .hover-card-animate.neon-cyan:hover {
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.5), 0 0 25px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.7);
+        }
+
+        /* ENTRANCE FADE ANIMATION */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        body.loaded .fade-in-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Keep entrance and hover animation compatible */
+        body.loaded .hover-card-animate {
+            transform: translate3d(0,0,0);
+        }
+
+        /* LOADING SCREEN */
         #loader {
             position: fixed;
             inset: 0;
@@ -104,24 +134,18 @@
             position: absolute;
             animation: load 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
-        @keyframes load {
-            100% { width: 100%; }
-        }
+        @keyframes load { 100% { width: 100%; } }
 
-        /* --- ACCELERATED SHINE TEXT --- */
+        /* GLOW & GRADIENT ENGINES */
         .animated-corner-logo, .animated-booking-title {
             background: linear-gradient(90deg, #06b6d4, #a855f7, #06b6d4);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shine 4s linear infinite;
-            will-change: background-position;
         }
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
+        @keyframes shine { to { background-position: 200% center; } }
 
-        /* --- WINDOWS 11 AMBIENT GLOW --- */
         #win11-ambient-glow {
             position: fixed;
             top: -10%;
@@ -134,23 +158,14 @@
             z-index: 1;
             pointer-events: none;
             opacity: 0;
-            will-change: opacity, transform;
-            transform: translate3d(0, 0, 0);
         }
-
-        .start-win11-glow {
-            animation: win11PulseAmbient 6s ease-in-out infinite alternate forwards;
-        }
-
+        .start-win11-glow { animation: win11PulseAmbient 6s ease-in-out infinite alternate forwards; }
         @keyframes win11PulseAmbient {
             0% { opacity: 0.1; transform: scale3d(0.9, 0.9, 1); }
             100% { opacity: 0.28; transform: scale3d(1.1, 1.1, 1); }
         }
 
-        /* --- MOBILE TOUCH OPTIMIZATIONS & CURSOR --- */
-        .interactive, select, input, button {
-            touch-action: manipulation;
-        }
+        .interactive, select, input, button { touch-action: manipulation; }
 
         @media (min-width: 1024px) {
             body { cursor: none !important; }
@@ -164,7 +179,6 @@
                 pointer-events: none;
                 z-index: 9999;
                 box-shadow: 0 0 10px #06b6d4;
-                will-change: left, top;
             }
             #custom-cursor-glow {
                 width: 36px; height: 36px;
@@ -174,7 +188,6 @@
                 transform: translate(-50%, -50%);
                 pointer-events: none;
                 z-index: 9998;
-                will-change: left, top;
             }
             body.clicking #custom-cursor { background-color: #a855f7; }
             body.hovering #custom-cursor-glow {
@@ -183,35 +196,36 @@
             }
         }
 
-        .neon-cyan { box-shadow: 0 4px 20px rgba(6, 182, 212, 0.15); }
-        .neon-purple { box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15); }
-        
-        .neon-animated-border {
-            animation: edgePulse 3s linear infinite alternate;
-        }
+        .neon-cyan { box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3); border-color: rgba(6, 182, 212, 0.2); }
+        .neon-purple { box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.2); }
+        .neon-animated-border { animation: edgePulse 3s linear infinite alternate; }
         @keyframes edgePulse {
             0% { border-color: rgba(6, 182, 212, 0.2); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35), 0 0 10px rgba(6, 182, 212, 0.05); }
             100% { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45), 0 0 15px rgba(168, 85, 247, 0.15); }
         }
+        
+        /* Utility styles mapping to modern presets */
+        .bg-black-50 { background-color: rgba(0,0,0,0.5); }
+        .bg-black-80 { background-color: rgba(0,0,0,0.8); }
+        .bg-white-04 { background-color: rgba(255,255,255,0.04); }
+        .border-white-10 { border-color: rgba(255,255,255,0.1); }
+        .border-white-08 { border-color: rgba(255,255,255,0.08); }
+        .border-cyan-10 { border-color: rgba(6, 182, 212, 0.1); }
     </style>
 </head>
-<body class="text-gray-100 min-h-screen flex flex-col justify-between overflow-x-hidden relative select-none">
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden relative select-none">
 
-    <!-- Screen Intro Loader -->
     <div id="loader">
         <div class="loader-logo">R</div>
         <div class="text-[10px] tracking-[0.5em] text-gray-400 uppercase mt-4 rockstar-font">RESPAWN LOUNGE</div>
         <div class="loader-bar"><div class="loader-progress"></div></div>
     </div>
 
-    <!-- GPU Lighting Base Layer -->
     <div id="win11-ambient-glow"></div>
 
-    <!-- Smart Cursors -->
     <div id="custom-cursor" class="hidden lg:block"></div>
     <div id="custom-cursor-glow" class="hidden lg:block"></div>
 
-    <!-- Sticky Header Block with True iOS Transparent Glass Blur -->
     <header class="ios-premium-blur sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <h1 class="animated-corner-logo heading-font text-xl md:text-2xl font-black tracking-wider">
@@ -224,36 +238,31 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-6 md:py-10 flex-grow w-full relative z-10 space-y-12">
-
-    <!-- Content Framework Frame -->
-<main class="max-w-6xl mx-auto px-4 py-6 md:py-10 flex-grow w-full relative z-10 space-y-12">        
-        <!-- Welcome Dynamic Banner Text -->
-        <div class="text-center px-2">
-            <p class="text-cyan-400 font-bold uppercase mb-1 tracking-[0.2em] text-[10px] md:text-xs">Balangoda's No.1 Gaming Lounge</p>
-            <h2 class="heading-font text-3xl md:text-6xl font-black text-white mb-3 tracking-tight leading-tight">READY UP: BOOK YOUR SESSION</h2>
-            <div class="h-[3px] w-20 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 mx-auto rounded-full shadow"></div>
+        
+        <div class="text-center px-2 fade-in-up">
+            <p class="text-cyan-400 font-bold uppercase mb-1 tracking-[0.2em] text-xs">Balangoda's No.1 Gaming Lounge</p>
+            <h2 class="heading-font text-3xl md:text-6xl font-black text-white mb-3 tracking-tight">READY UP: BOOK YOUR SESSION</h2>
+            <div class="h-1 w-20 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 mx-auto rounded-full shadow"></div>
         </div>
 
-        <!-- Station Setup Cards Grid System -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <!-- PS5 Booth Setup -->
-            <div class="ios-water-glass border border-purple-500/20 rounded-2xl p-5 md:p-8 flex flex-col justify-between transition-all duration-300 md:hover:-translate-y-1 md:hover:border-purple-500/50 neon-purple group">
+            <!-- PLAYSTATION 5 BOOTHS CARD -->
+            <div class="ios-water-glass hover-card-animate neon-purple rounded-2xl p-6 flex flex-col justify-between group fade-in-up" style="transition-delay: 100ms;">
                 <div>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="bg-purple-500/20 border border-purple-500/30 text-purple-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">3 Systems Set Up</span>
-                        <i class="fa-brands fa-playstation text-3xl md:text-4xl text-purple-400 group-hover:scale-105 transition duration-300"></i>
+                        <span class="bg-purple-500 bg-opacity-20 border border-purple-500 border-opacity-30 text-purple-300 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">3 Systems Set Up</span>
+                        <i class="fa-brands fa-playstation text-3xl text-purple-400 transition duration-300 transform group-hover:scale-120 group-hover:rotate-12"></i>
                     </div>
-                    <h3 class="heading-font text-xl md:text-2xl font-bold text-white mb-1.5">PlayStation 5 Booths</h3>
-                    <p class="text-gray-400 text-xs md:text-sm mb-5 leading-relaxed">Immersive 4K high-refresh-rate console gaming setups built for local multiplayer co-op sessions or heavy solo campaigns.</p>
+                    <h3 class="heading-font text-xl md:text-2xl font-bold text-white mb-2">PlayStation 5 Booths</h3>
+                    <p class="text-gray-400 text-sm mb-5 leading-relaxed">Immersive 4K high-refresh-rate console gaming setups built for local multiplayer co-op sessions or heavy solo campaigns.</p>
                     
-                    <!-- Rates Sub-Matrix Card -->
-                    <div class="ios-water-matrix border border-white/10 rounded-xl p-3.5 mb-5 relative overflow-hidden">
-                        <h4 class="text-[10px] font-black tracking-widest text-purple-300 mb-2.5 uppercase heading-font flex items-center gap-1.5"><i class="fa-solid fa-tags"></i> PS5 Rate Matrix</h4>
+                    <div class="ios-water-matrix border border-white-10 rounded-xl p-4 mb-5">
+                        <h4 class="text-xs font-black tracking-widest text-purple-300 mb-2.5 uppercase heading-font flex items-center gap-1.5"><i class="fa-solid fa-tags"></i> PS5 Rate Matrix</h4>
                         <div class="space-y-3.5 text-xs">
                             <div>
-                                <div class="text-[9px] uppercase font-bold text-purple-300/40 tracking-wider mb-1">30 Minutes Session</div>
+                                <div class="text-[9px] uppercase font-bold text-purple-300 text-opacity-40 tracking-wider mb-1">30 Minutes Session</div>
                                 <div class="space-y-1 text-gray-300">
-                                    <div class="flex justify-between border-b border-white/[0.03] pb-1">
+                                    <div class="flex justify-between border-b border-white border-opacity-5 pb-1">
                                         <span>Duo (2 Players)</span><span class="font-bold text-white">Rs. 400/-</span>
                                     </div>
                                     <div class="flex justify-between">
@@ -261,13 +270,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pt-0.5">
-                                <div class="text-[9px] uppercase font-bold text-purple-300/40 tracking-wider mb-1">1 Hour Session</div>
+                            <div class="pt-1">
+                                <div class="text-[9px] uppercase font-bold text-purple-300 text-opacity-40 tracking-wider mb-1">1 Hour Session</div>
                                 <div class="space-y-1.5 text-gray-300">
-                                    <div class="flex justify-between border-b border-white/[0.03] pb-1">
+                                    <div class="flex justify-between border-b border-white border-opacity-5 pb-1">
                                         <span>Solo (1 Player)</span><span class="font-bold text-white">Rs. 500/-</span>
                                     </div>
-                                    <div class="flex justify-between border-b border-white/[0.03] pb-1">
+                                    <div class="flex justify-between border-b border-white border-opacity-5 pb-1">
                                         <span>Duo (2 Players)</span><span class="font-bold text-white">Rs. 600/-</span>
                                     </div>
                                     <div class="flex justify-between">
@@ -278,142 +287,138 @@
                         </div>
                     </div>
 
-                    <div class="border-t border-white/[0.06] pt-3.5">
-                        <h4 class="text-[10px] uppercase font-bold tracking-widest text-purple-300 mb-2"><i class="fa-solid fa-compact-disc mr-1"></i> Available Library:</h4>
+                    <div class="border-t border-white border-opacity-10 pt-4">
+                        <h4 class="text-xs uppercase font-bold tracking-widest text-purple-300 mb-2"><i class="fa-solid fa-compact-disc mr-1"></i> Available Library:</h4>
                         <div class="flex flex-wrap gap-1.5">
-                            <span class="bg-white/[0.04] border border-white/[0.08] text-gray-300 text-[11px] px-2 py-0.5 rounded">EA Sports FC 26</span>
-                            <span class="bg-white/[0.04] border border-white/[0.08] text-gray-300 text-[11px] px-2 py-0.5 rounded">Mortal Kombat 1</span>
-                            <span class="bg-white/[0.04] border border-white/[0.08] text-gray-300 text-[11px] px-2 py-0.5 rounded">MK 11 Ultimate</span>
-                            <span class="bg-white/[0.04] border border-white/[0.08] text-gray-300 text-[11px] px-2 py-0.5 rounded">Fortnite</span>
-                            <span class="bg-white/[0.04] border border-white/[0.08] text-gray-300 text-[11px] px-2 py-0.5 rounded">Uncharted Series</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">EA Sports FC 26</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">Mortal Kombat 1</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">MK 11 Ultimate</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">Fortnite</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">Uncharted Series</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- PC Cockpit Setup -->
-            <div class="ios-water-glass border border-cyan-500/20 rounded-2xl p-5 md:p-8 flex flex-col justify-between transition-all duration-300 md:hover:-translate-y-1 md:hover:border-cyan-500/50 neon-cyan group">
+            <!-- ELITE PC + FORCE-FEEDBACK RIG CARD -->
+            <div class="ios-water-glass hover-card-animate neon-cyan rounded-2xl p-6 flex flex-col justify-between group fade-in-up" style="transition-delay: 200ms;">
                 <div>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Sim-Rig Cockpit</span>
-                        <i class="fa-solid fa-gamepad text-3xl md:text-4xl text-cyan-400 group-hover:scale-105 transition duration-300"></i>
+                        <span class="bg-cyan-500 bg-opacity-20 border border-cyan-500 border-opacity-30 text-cyan-300 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Sim-Rig Cockpit</span>
+                        <i class="fa-solid fa-gamepad text-3xl text-cyan-400 transition duration-300 transform group-hover:scale-120 group-hover:rotate-12"></i>
                     </div>
-                    <h3 class="heading-font text-xl md:text-2xl font-bold text-white mb-1.5">Elite PC + Force-Feedback Rig</h3>
-                    <p class="text-gray-400 text-xs md:text-sm mb-5 leading-relaxed">High-performance gaming machine coupled with a dynamic force-feedback steering wheel and pedal system for hardcore racing simulators.</p>
+                    <h3 class="heading-font text-xl md:text-2xl font-bold text-white mb-2">Elite PC + Force-Feedback Rig</h3>
+                    <p class="text-gray-400 text-sm mb-5 leading-relaxed">High-performance gaming machine coupled with a dynamic force-feedback steering wheel and pedal system for hardcore racing simulators.</p>
                     
-                    <!-- Simulation Racing Matrices -->
-                    <div class="ios-water-matrix border border-white/10 rounded-xl p-3.5 mb-5 relative overflow-hidden">
-                        <h4 class="text-[10px] font-black tracking-widest text-cyan-300 mb-2.5 uppercase heading-font flex items-center gap-1.5"><i class="fa-solid fa-gauge-high"></i> Sim-Rig Pass Rates</h4>
+                    <div class="ios-water-matrix border border-white-10 rounded-xl p-4 mb-5">
+                        <h4 class="text-xs font-black tracking-widest text-cyan-300 mb-2.5 uppercase heading-font flex items-center gap-1.5"><i class="fa-solid fa-gauge-high"></i> Sim-Rig Pass Rates</h4>
                         <div class="space-y-2 text-xs text-gray-300">
-                            <div class="flex justify-between border-b border-white/[0.03] pb-2">
-                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-stopwatch text-cyan-400 text-[9px]"></i> 15 Minutes Blitz</span>
+                            <div class="flex justify-between border-b border-white border-opacity-5 pb-2">
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-stopwatch text-cyan-400 text-[10px]"></i> 15 Minutes Blitz</span>
                                 <span class="font-bold text-white">Rs. 250/-</span>
                             </div>
-                            <div class="flex justify-between border-b border-white/[0.03] py-2">
-                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-stopwatch text-cyan-400 text-[9px]"></i> 30 Minutes Standard</span>
+                            <div class="flex justify-between border-b border-white border-opacity-5 py-2">
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-stopwatch text-cyan-400 text-[10px]"></i> 30 Minutes Standard</span>
                                 <span class="font-bold text-white">Rs. 400/-</span>
                             </div>
                             <div class="flex justify-between pt-1.5">
-                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-stopwatch text-cyan-400 text-[9px]"></i> 1 Hour Endurance Pass</span>
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-stopwatch text-cyan-400 text-[10px]"></i> 1 Hour Endurance Pass</span>
                                 <span class="font-bold text-white">Rs. 750/-</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="border-t border-white/[0.06] pt-3.5">
-                        <h4 class="text-[10px] uppercase font-bold tracking-widest text-cyan-300 mb-2"><i class="fa-solid fa-computer mr-1"></i> Available Games:</h4>
+                    <div class="border-t border-white border-opacity-10 pt-4">
+                        <h4 class="text-xs uppercase font-bold tracking-widest text-cyan-300 mb-2"><i class="fa-solid fa-computer mr-1"></i> Available Games:</h4>
                         <div class="flex flex-wrap gap-1.5">
-                            <span class="bg-white/[0.04] border border-white/[0.08] text-gray-300 text-[11px] px-2 py-0.5 rounded">God of War</span>
-                            <span class="bg-white/[0.04] border border-white/[0.08] text-gray-300 text-[11px] px-2 py-0.5 rounded">NFS Unbound</span>
-                            <span class="bg-white/[0.04] border border-white/[0.08] text-gray-300 text-[11px] px-2 py-0.5 rounded">Forza Horizon 5</span>
-                            <span class="bg-white/[0.04] border border-white/[0.08] text-gray-300 text-[11px] px-2 py-0.5 rounded">F1 2025</span>
-                            <span class="bg-white/[0.04] border border-white/[0.08] text-gray-300 text-[11px] px-2 py-0.5 rounded">GTA V</span>
-                            <span class="bg-white/[0.04] border border-white/[0.08] text-gray-300 text-[11px] px-2 py-0.5 rounded">The Forest</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">God of War</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">NFS Unbound</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">Forza Horizon 5</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">F1 2025</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">GTA V</span>
+                            <span class="bg-white-04 border border-white-08 text-gray-300 text-xs px-2 py-0.5 rounded">The Forest</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Fully Glassmorphic Touch-Optimized Booking Form Frame Panel -->
-        <section id="booking" class="ios-water-glass border border-cyan-500/10 rounded-2xl p-5 md:p-10 max-w-xl mx-auto shadow-2xl relative overflow-hidden transition-all duration-300 neon-animated-border group/panel">
-            <div class="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 shadow"></div>
+        <section id="booking" class="ios-water-glass border rounded-2xl p-6 md:p-10 max-w-xl mx-auto shadow-2xl relative overflow-hidden neon-animated-border fade-in-up" style="transition-delay: 300ms;">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 shadow"></div>
             
-            <h3 class="animated-booking-title heading-font text-xl md:text-2xl font-black text-center mb-6 md:mb-8 tracking-wide uppercase">
+            <h3 class="animated-booking-title heading-font text-xl md:text-2xl font-black text-center mb-6 tracking-wide uppercase">
                 SECURE YOUR SLOT
             </h3>
             
             <form id="whatsappForm" class="space-y-5">
                 <div>
-                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Your Gamer Tag / Name</label>
-                    <input type="text" id="name" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-cyan-500 focus:bg-black/70 focus:shadow-[0_0_12px_rgba(6,182,212,0.1)] transition duration-200 text-sm appearance-none" placeholder="e.g., Deshan">
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Your Gamer Tag / Name</label>
+                    <input type="text" id="name" required class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm" placeholder="e.g., Deshan">
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Select Rig / Console</label>
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Select Rig / Console</label>
                     <div class="relative">
-                        <select id="station" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-cyan-500 focus:bg-black/70 transition duration-200 text-sm appearance-none pr-10">
-                            <option value="" disabled selected class="bg-[#0a0a0c]">Choose your weapon...</option>
-                            <option value="PS5 1" class="bg-[#0a0a0c]">PS5 1</option>
-                            <option value="PS5 2" class="bg-[#0a0a0c]">PS5 2</option>
-                            <option value="PS5 3" class="bg-[#0a0a0c]">PS5 3</option>
-                            <option value="PC" class="bg-[#0a0a0c]">Gaming PC + Steering Wheel Sim-Rig</option>
+                        <select id="station" required class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm appearance-none">
+                            <option value="" disabled selected class="bg-black">Choose your weapon...</option>
+                            <option value="PS5 1" class="bg-black">PS5 1</option>
+                            <option value="PS5 2" class="bg-black">PS5 2</option>
+                            <option value="PS5 3" class="bg-black">PS5 3</option>
+                            <option value="PC" class="bg-black">Gaming PC + Steering Wheel Sim-Rig</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-xs"><i class="fa-solid fa-chevron-down"></i></div>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Select Game</label>
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Select Game</label>
                     <div class="relative">
-                        <select id="game" required disabled class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-cyan-500 focus:bg-black/70 transition duration-200 text-sm appearance-none pr-10 opacity-40">
-                            <option value="" disabled selected class="bg-[#0a0a0c]">First choose your setup above...</option>
+                        <select id="game" required disabled class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm appearance-none opacity-40">
+                            <option value="" disabled selected class="bg-black">First choose your setup above...</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-xs"><i class="fa-solid fa-chevron-down"></i></div>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Date</label>
-                    <input type="date" id="date" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-cyan-500 focus:bg-black/70 transition duration-200 text-sm appearance-none">
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Date</label>
+                    <input type="date" id="date" required class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm">
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">From (Start)</label>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">From (Start)</label>
                         <div class="relative">
-                            <select id="startTime" required disabled class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-cyan-500 focus:bg-black/70 transition duration-200 text-sm appearance-none pr-10 opacity-40">
-                                <option value="" disabled selected class="bg-[#0a0a0c]">Pick start time...</option>
+                            <select id="startTime" required disabled class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm appearance-none opacity-40">
+                                <option value="" disabled selected class="bg-black">Pick start time...</option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-xs"><i class="fa-solid fa-chevron-down"></i></div>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">To (End)</label>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">To (End)</label>
                         <div class="relative">
-                            <select id="endTime" required disabled class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-cyan-500 focus:bg-black/70 transition duration-200 text-sm appearance-none pr-10 opacity-40">
-                                <option value="" disabled selected class="bg-[#0a0a0c]">Choose start time first...</option>
+                            <select id="endTime" required disabled class="w-full bg-black-50 border border-white-10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 text-sm appearance-none opacity-40">
+                                <option value="" disabled selected class="bg-black">Choose start time first...</option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-xs"><i class="fa-solid fa-chevron-down"></i></div>
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-500 active:scale-98 text-white font-bold py-4 rounded-xl heading-font tracking-widest text-sm transition duration-200 shadow-lg flex justify-center items-center gap-2.5">
+                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-cyan-500 text-white font-black py-4 rounded-xl heading-font tracking-widest text-sm shadow-lg flex justify-center items-center gap-2.5 transform active:scale-95 transition duration-150">
                     <i class="fa-brands fa-whatsapp text-xl"></i> BOOK YOUR SESSION
                 </button>
             </form>
         </section>
     </main>
 
-    <!-- Structural Layout Footer -->
-    <footer class="border-t border-zinc-950 bg-black/40 py-5 text-center text-[10px] text-gray-600 tracking-wider relative z-20 px-4">
+    <footer class="border-t border-gray-900 bg-black bg-opacity-40 py-5 text-center text-xs text-gray-600 tracking-wider px-4">
         <p>&copy; 2026 RESPAWN LOUNGE. ALL RIGHTS RESERVED. Gamers never Die They RESPAWN</p>
     </footer>
 
-    <!-- Native Dynamic Application Scripts Frame Core -->
     <script>
-        // --- INSTANT INTRO LOADER ENGINE ---
+        // --- INSTANT INTRO LOADER & ENTRANCE ENGINE ---
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const loader = document.getElementById('loader');
@@ -424,6 +429,7 @@
                 setTimeout(() => {
                     loader.style.visibility = 'hidden';
                     win11Light.classList.add('start-win11-glow');
+                    document.body.classList.add('loaded');
                 }, 400);
             }, 500);
         });
@@ -448,7 +454,6 @@
         const cursorDot = document.getElementById('custom-cursor');
         const cursorGlow = document.getElementById('custom-cursor-glow');
 
-        // Only configure custom mouse layers if screen layout supports precision pointers
         if(cursorDot && cursorGlow && window.matchMedia("(min-width: 1024px)").matches) {
             window.addEventListener('mousemove', (e) => {
                 const posX = e.clientX;
@@ -505,7 +510,7 @@
         }
 
         function populateStartTimes(interval) {
-            startSelect.innerHTML = '<option value="" disabled selected class="bg-[#0a0a0c]">Pick start time...</option>';
+            startSelect.innerHTML = '<option value="" disabled selected class="bg-black">Pick start time...</option>';
             startSelect.disabled = false;
             startSelect.classList.remove('opacity-40');
             
@@ -517,11 +522,11 @@
                 const opt = document.createElement('option');
                 opt.value = timeStr;
                 opt.textContent = timeStr;
-                opt.className = "bg-[#0a0a0c]";
+                opt.className = "bg-black";
                 startSelect.appendChild(opt);
             }
             
-            endSelect.innerHTML = '<option value="" disabled selected class="bg-[#0a0a0c]">Choose start time...</option>';
+            endSelect.innerHTML = '<option value="" disabled selected class="bg-black">Choose start time...</option>';
             endSelect.disabled = true;
             endSelect.classList.add('opacity-40');
         }
@@ -540,7 +545,7 @@
                 const opt = document.createElement('option');
                 opt.value = timeStr;
                 opt.textContent = timeStr;
-                opt.className = "bg-[#0a0a0c]";
+                opt.className = "bg-black";
                 endSelect.appendChild(opt);
                 
                 if (mins === startMins + interval) {
@@ -557,17 +562,16 @@
             const selection = this.value;
             const interval = (selection === "PC") ? 15 : 30;
             
-            // Pop game library variations matching station structure
             gameSelect.disabled = false;
             gameSelect.classList.remove('opacity-40');
-            gameSelect.innerHTML = '<option value="" disabled selected class="bg-[#0a0a0c]">Choose your game...</option>';
+            gameSelect.innerHTML = '<option value="" disabled selected class="bg-black">Choose your game...</option>';
             
             const targetLibrary = (selection === "PC") ? gamesMap.PC_GAMES : gamesMap.PS5_GAMES;
             targetLibrary.forEach(game => {
                 const opt = document.createElement('option');
                 opt.value = game;
                 opt.textContent = game;
-                opt.className = "bg-[#0a0a0c]";
+                opt.className = "bg-black";
                 gameSelect.appendChild(opt);
             });
 
@@ -580,7 +584,7 @@
             populateEndTimes(this.value, interval);
         });
 
-        // --- SECURE FORM TERMINATION OUTBOUND ENGINE (WHATSAPP REDIRECTION) ---
+        // --- WHATSAPP REDIRECTION ---
         document.getElementById('whatsappForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
