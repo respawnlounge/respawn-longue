@@ -455,6 +455,7 @@
             </form>
         </section>
 
+        <!-- LIVE WA GROUP SLOT LINKED BELOW -->
         <div class="ios-water-glass hover-card-animate neon-green rounded-2xl p-6 max-w-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 fade-in-up" style="transition-delay: 350ms;">
             <div class="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row">
                 <div class="w-12 h-12 rounded-xl bg-green-500 bg-opacity-10 border border-green-500 border-opacity-30 flex items-center justify-center text-green-400 text-2xl shadow-sm">
@@ -465,7 +466,7 @@
                     <p class="text-gray-400 text-xs mt-0.5">Get live availability updates, tournament news, and chat with local Balangoda players.</p>
                 </div>
             </div>
-            <a href="https://chat.whatsapp.com/ExampleGroupLinkHere" target="_blank" class="interactive whitespace-nowrap bg-green-600 hover:bg-green-500 text-white font-bold text-xs px-5 py-3 rounded-xl heading-font tracking-wider flex items-center gap-2 shadow transition active:scale-95">
+            <a href="https://chat.whatsapp.com/KQZJ7dK4speC7rsHXjrTyj?s=cl&p=i&ilr=1" target="_blank" class="interactive whitespace-nowrap bg-green-600 hover:bg-green-500 text-white font-bold text-xs px-5 py-3 rounded-xl heading-font tracking-wider flex items-center gap-2 shadow transition active:scale-95">
                 <i class="fa-brands fa-whatsapp text-sm"></i> JOIN GROUP
             </a>
         </div>
@@ -550,7 +551,7 @@
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // INTERACTIVE HIGHLIGHT OVERLAY (Mouse or Touch proximity detection)
+                // INTERACTIVE HIGHLIGHT OVERLAY
                 if (mouse.x !== undefined && mouse.y !== undefined) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
@@ -560,7 +561,6 @@
                         const directionX = dx / distance;
                         const directionY = dy / distance;
                         
-                        // Push particles outward on engagement
                         this.x -= directionX * force * 3;
                         this.y -= directionY * force * 3;
                     }
