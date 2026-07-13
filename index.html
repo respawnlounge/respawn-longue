@@ -209,7 +209,7 @@
             touch-action: manipulation; 
         }
 
-        /* STRICT DESKTOP ONLY POINTER SUPPRESSION ENGINE */
+        /* ADVANCED HARDWARE CURSOR ENGINE (Strict Desktop/Fine Pointer Controls Only) */
         @media (min-width: 1024px) and (pointer: fine) {
             html, body, a, button, select, input { 
                 cursor: none !important; 
@@ -223,6 +223,7 @@
                 pointer-events: none;
                 z-index: 9999;
                 box-shadow: 0 0 10px #06b6d4;
+                transition: transform 0.1s ease;
             }
             #custom-cursor-glow {
                 width: 36px; height: 36px;
@@ -233,12 +234,38 @@
                 pointer-events: none;
                 z-index: 9998;
             }
-            body.clicking #custom-cursor { background-color: #a855f7; }
+            body.clicking #custom-cursor { 
+                transform: translate(-50%, -50%) scale(2);
+                background-color: #a855f7; 
+                box-shadow: 0 0 15px #a855f7;
+            }
+            body.clicking #custom-cursor-glow {
+                transform: translate(-50%, -50%) scale(0.5);
+                border-color: #a855f7;
+            }
             body.hovering #custom-cursor-glow {
                 border-color: #06b6d4;
                 transform: translate(-50%, -50%) scale(1.35);
                 box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
             }
+        }
+
+        /* HIGH-SPEED NATIVE TOUCH MOBILE RIPPLE DESIGN */
+        .mobile-touch-ripple {
+            position: fixed;
+            width: 45px;
+            height: 45px;
+            background: radial-gradient(circle, rgba(6,182,212,0.4) 0%, rgba(168,85,247,0.1) 70%, rgba(0,0,0,0) 100%);
+            border: 1px solid rgba(6, 182, 212, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999999;
+            transform: translate(-50%, -50%) scale(0.2);
+            animation: mobileRipplePop 0.4s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+        @keyframes mobileRipplePop {
+            0% { transform: translate(-50%, -50%) scale(0.3); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
         }
 
         .neon-cyan { box-shadow: 0 4px 25px rgba(6, 182, 212, 0.35); border-color: rgba(6, 182, 212, 0.25); }
@@ -280,9 +307,8 @@
 
     <div id="win11-ambient-glow"></div>
 
-    <!-- DYNAMICALLY REMOVED IN SCRIPT FOR MOBILE INFRASTRUCTURES -->
-    <div id="custom-cursor" class="hidden lg:block"></div>
-    <div id="custom-cursor-glow" class="hidden lg:block"></div>
+    <div id="custom-cursor"></div>
+    <div id="custom-cursor-glow"></div>
 
     <header class="ios-premium-blur sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -297,7 +323,6 @@
 
     <main class="max-w-6xl mx-auto px-4 py-6 md:py-10 flex-grow w-full relative z-10 space-y-12">
         
-        <!-- HERO TITLE WITH iOS WATER GLASS CARD + LIQUID GLOSS TEXT STYLING -->
         <div class="max-w-3xl mx-auto ios-water-glass hero-neon-glow rounded-2xl p-6 md:p-8 text-center px-4 fade-in-up transition-all duration-300">
             <p class="text-cyan-400 font-bold uppercase mb-1.5 tracking-[0.25em] text-[10px] md:text-xs">Balangoda's No.1 Gaming Lounge</p>
             <h2 class="heading-font text-3xl md:text-5xl font-black mb-4 tracking-tight liquid-glass-text">
@@ -365,7 +390,7 @@
                 <div>
                     <div class="flex justify-between items-center mb-4">
                         <span class="bg-cyan-500 bg-opacity-20 border border-cyan-500 border-opacity-30 text-cyan-300 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Sim-Rig Cockpit</span>
-                        <i class="fa-solid fa-gamepad text-3xl text-cyan-400 transition duration-300 transform group-hover:scale-120 group-hover:rotate-12"></i>
+                        <i class="fa-solid fa-gauge-high text-3xl text-cyan-400 transition duration-300 transform group-hover:scale-120 group-hover:rotate-12"></i>
                     </div>
                     <h3 class="heading-font text-xl md:text-2xl font-bold text-white mb-2">Elite PC + Force-Feedback Rig</h3>
                     <p class="text-gray-400 text-sm mb-5 leading-relaxed">High-performance gaming machine coupled with a dynamic force-feedback steering wheel and pedal system for hardcore racing simulators.</p>
@@ -472,9 +497,7 @@
             </form>
         </section>
 
-        <!-- DUAL WHATSAPP HUB PANELS -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <!-- PANEL 1: MAIN COMMUNITY CHAT GROUP -->
             <div class="ios-water-glass hover-card-animate neon-green rounded-2xl p-5 flex flex-col justify-between gap-4 fade-in-up group" style="transition-delay: 350ms;">
                 <div class="flex items-start gap-4">
                     <div class="w-11 h-11 shrink-0 rounded-xl bg-green-500 bg-opacity-10 border border-green-500 border-opacity-30 flex items-center justify-center text-green-400 text-xl shadow-sm transition-transform duration-300 group-hover:scale-110">
@@ -490,7 +513,6 @@
                 </a>
             </div>
 
-            <!-- PANEL 2: RESERVATION & ANNOUNCEMENTS GROUP -->
             <div class="ios-water-glass hover-card-animate neon-blue rounded-2xl p-5 flex flex-col justify-between gap-4 fade-in-up group" style="transition-delay: 400ms;">
                 <div class="flex items-start gap-4">
                     <div class="w-11 h-11 shrink-0 rounded-xl bg-blue-500 bg-opacity-10 border border-blue-500 border-opacity-30 flex items-center justify-center text-blue-400 text-xl shadow-sm transition-transform duration-300 group-hover:scale-110">
@@ -587,7 +609,6 @@
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // INTERACTIVE HIGHLIGHT OVERLAY
                 if (mouse.x !== undefined && mouse.y !== undefined) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
@@ -694,12 +715,13 @@
         resizeCanvas();
         animateBackground();
 
-        // --- MOUSE TRACKING ENGINE (Safe Guarded For Desktops With Pointers Only) ---
+        // --- HARDWARE DECOUPLING MOUSE POINTERS AND TOUCH RIPPLE MATRIX ---
         const cursorDot = document.getElementById('custom-cursor');
         const cursorGlow = document.getElementById('custom-cursor-glow');
-        const hasFinePointer = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
+        const isDesktop = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
 
-        if(hasFinePointer && cursorDot && cursorGlow) {
+        if (isDesktop && cursorDot && cursorGlow) {
+            // Setup Desktop Custom Cursor Mechanics
             window.addEventListener('mousemove', (e) => {
                 const posX = e.clientX;
                 const posY = e.clientY;
@@ -724,9 +746,25 @@
             }
             updateCursorListeners();
         } else {
-            // Clean elements off completely if mobile devices or touch interfaces are detected
+            // Safe teardown of cursor tags for Mobile configurations
             if (cursorDot) cursorDot.remove();
             if (cursorGlow) cursorGlow.remove();
+
+            // INSTANT MOBILE ORGANIC RIPPLE EMITTER ENGINE (iOS & Android Native)
+            window.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 0) return;
+                
+                const touch = e.touches[0];
+                const ripple = document.createElement('div');
+                ripple.className = 'mobile-touch-ripple';
+                ripple.style.left = `${touch.clientX}px`;
+                ripple.style.top = `${touch.clientY}px`;
+                
+                document.body.appendChild(ripple);
+                
+                // Clear hardware cache after element animation lifecycle kills out
+                setTimeout(() => ripple.remove(), 400);
+            }, { passive: true });
         }
 
         // --- DYNAMIC SLOT INTERVAL CALCULATION MATRIX ENGINE ---
