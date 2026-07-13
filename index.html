@@ -567,7 +567,6 @@
                 }
             }
             draw() {
-                // Check distance to light up close particles distinctly
                 let isHighlighted = false;
                 if (mouse.x !== undefined && mouse.y !== undefined) {
                     let dx = mouse.x - this.x;
@@ -589,13 +588,12 @@
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, isHighlighted ? this.size + 1 : this.size, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.shadowBlur = 0; // Reset canvas property to preserve performance
+                ctx.shadowBlur = 0; 
             }
         }
 
         function initBackground() {
             particles = [];
-            // Adaptive calculations based on device layout size limits
             const densityDivider = window.innerWidth < 768 ? 6000 : 3500;
             const totalParticles = Math.floor((canvas.width * canvas.height) / densityDivider);
             for (let i = 0; i < totalParticles; i++) {
@@ -612,7 +610,6 @@
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Global Ambient Grid Coordinates
             ctx.strokeStyle = 'rgba(255, 255, 255, 0.008)';
             ctx.lineWidth = 1;
             const gridSize = window.innerWidth < 768 ? 40 : 60;
@@ -638,7 +635,6 @@
 
         window.addEventListener('resize', resizeCanvas);
         
-        // Android & iOS Universal Contact Input Tracker
         function trackInteraction(clientX, clientY) {
             mouse.x = clientX;
             mouse.y = clientY;
@@ -651,7 +647,6 @@
         window.addEventListener('mousemove', (e) => trackInteraction(e.clientX, e.clientY));
         window.addEventListener('mouseleave', clearInteraction);
         
-        // Touch screens highlight mapping engines
         window.addEventListener('touchstart', (e) => {
             if(e.touches.length > 0) trackInteraction(e.touches[0].clientX, e.touches[0].clientY);
         }, {passive: true});
