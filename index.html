@@ -204,16 +204,16 @@
             100% { opacity: 0.35; transform: scale3d(1.1, 1.1, 1); }
         }
 
-        /* MOBILE SAFARI OPTIMIZATIONS */
+        /* MOBILE TOUCH CONTROL AND HIGHLIGHT RESTORATIONS */
         interactive, select, input, button { 
             touch-action: manipulation; 
-            -webkit-user-select: none;
-            user-select: none;
         }
 
-        @media (min-width: 1024px) {
-            body { cursor: none !important; }
-            a, button, select, input { cursor: none !important; }
+        /* STRICT DESKTOP ONLY POINTER SUPPRESSION ENGINE */
+        @media (min-width: 1024px) and (pointer: fine) {
+            html, body, a, button, select, input { 
+                cursor: none !important; 
+            }
             #custom-cursor {
                 width: 8px; height: 8px;
                 background-color: #06b6d4;
@@ -270,7 +270,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between overflow-x-hidden relative select-none">
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden relative">
 
     <div id="loader">
         <div class="loader-logo">R</div>
@@ -280,6 +280,7 @@
 
     <div id="win11-ambient-glow"></div>
 
+    <!-- DYNAMICALLY REMOVED IN SCRIPT FOR MOBILE INFRASTRUCTURES -->
     <div id="custom-cursor" class="hidden lg:block"></div>
     <div id="custom-cursor-glow" class="hidden lg:block"></div>
 
@@ -693,11 +694,12 @@
         resizeCanvas();
         animateBackground();
 
-        // --- HYBRID PLATFORM MOUSE TRACKING ENGINE (Mobile Safe) ---
+        // --- MOUSE TRACKING ENGINE (Safe Guarded For Desktops With Pointers Only) ---
         const cursorDot = document.getElementById('custom-cursor');
         const cursorGlow = document.getElementById('custom-cursor-glow');
+        const hasFinePointer = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
 
-        if(cursorDot && cursorGlow && window.matchMedia("(min-width: 1024px)").matches) {
+        if(hasFinePointer && cursorDot && cursorGlow) {
             window.addEventListener('mousemove', (e) => {
                 const posX = e.clientX;
                 const posY = e.clientY;
@@ -721,6 +723,10 @@
                 });
             }
             updateCursorListeners();
+        } else {
+            // Clean elements off completely if mobile devices or touch interfaces are detected
+            if (cursorDot) cursorDot.remove();
+            if (cursorGlow) cursorGlow.remove();
         }
 
         // --- DYNAMIC SLOT INTERVAL CALCULATION MATRIX ENGINE ---
